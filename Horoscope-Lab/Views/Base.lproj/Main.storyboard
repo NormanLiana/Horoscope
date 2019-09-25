@@ -24,6 +24,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="591052263.24896502">
                                     <!--2019-09-24 21:11:03 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="datePicker:" destination="BYZ-38-t0r" eventType="valueChanged" id="uh7-PG-ODB"/>
+                                </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evh-sK-Tm1">
                                 <rect key="frame" x="142" y="660" width="130" height="64"/>
@@ -49,15 +52,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="RTa-OK-040"/>
+                    <connections>
+                        <outlet property="textFieldOutlet" destination="T8i-N2-dXj" id="2mz-h8-gm5"/>
+                        <outlet property="welcomeLabel" destination="59U-OI-WU8" id="3sG-nT-dd0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="931.88405797101461" y="762.72321428571422"/>
         </scene>
-        <!--View Controller-->
+        <!--Users Horoscope View Controller-->
         <scene sceneID="pDK-pn-1Ca">
             <objects>
-                <viewController id="kDr-7v-Kos" sceneMemberID="viewController">
+                <viewController id="kDr-7v-Kos" customClass="UsersHoroscopeViewController" customModule="Horoscope_Lab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rhm-cl-BFN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,10 +77,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjF-0d-cvy">
+                                <rect key="frame" x="108" y="113" width="198" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLi-40-60P">
+                                <rect key="frame" x="108" y="187" width="198" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wL9-y3-uEx"/>
                     </view>
+                    <connections>
+                        <outlet property="astroSignLabel" destination="JjF-0d-cvy" id="Kod-Aq-5tA"/>
+                        <outlet property="birthdayDateLabel" destination="MLi-40-60P" id="cOK-J6-lOO"/>
+                        <outlet property="horoscopeLabel" destination="gKf-RR-ZJ2" id="DZD-DW-G2p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HF0-3T-KML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

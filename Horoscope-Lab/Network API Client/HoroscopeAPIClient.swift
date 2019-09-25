@@ -8,34 +8,54 @@
 
 import Foundation
 
-class HoroscopeAPIClient {
+class HoroscopeAPIManager {
     private init() {}
     
-    static var shared = HoroscopeAPIClient()
+    static let shared = HoroscopeAPIManager()
     
-    
-    func getShows(userSearchTerm: String?, completionHandler: @escaping (Result<Horoscope, AppError>) -> () ) {
-        if let urlString = userSearchTerm {
-            let noSpacesURL = urlString.replacingOccurrences(of: " ", with: "-")
-            let urlStr = "http://api.tvmaze.com/search/shows?q=\(noSpacesURL)"
-            
-            NetworkManager.shared.fetchData(urlString: urlStr) { (result) in
-                switch result {
-                case .failure( _):
-                    completionHandler(.failure(.badURL))
-                case .success(let data):
-                    do {
-                        let showInfo = try JSONDecoder().decode(Horoscope.self, from: data)
-                        completionHandler(.success(showInfo))
-                    } catch {
-                        completionHandler(.failure(.noDataError))
-                    }
+    func getElements(completionHandler: @escaping (Result<Horoscope, AppError>) -> () ) {
+        let urlStr = "http://sandipbgt.com/theastrologer/api/horoscope/gemini/today"
+        
+        guard let url = URL(string: urlStr) else {
+            completionHandler(.failure(.badURL))
+            return
+        }
+        NetworkHelper.manager.performDataTask(withUrl: url, andMethod: .get) { (result) in
+            switch result {
+            case .failure(let error):
+                completionHandler(.failure(error))
+            case .success(let data):
+                do {
+                    let elementInfo = try JSONDecoder().decode(Horoscope.self, from: data)
                     
+                    completionHandler(.success(elementInfo))
+                } catch {
+                    completionHandler(.failure(.couldNotParseJSON(rawError: error)))
                 }
             }
         }
-        
     }
+    
+//    func postElement(element: FavoriteElement, completionHandler: @escaping (Result<Data, AppError>) -> () ) {
+//
+//        guard let encodedData = try? JSONEncoder().encode(element) else {
+//            fatalError("encoder failed")
+//        }
+//        let urlStr = "https://5c1d79abbc26950013fbcaa9.mockapi.io/api/v1/favorites"
+//        guard let url = URL(string: urlStr) else {
+//            completionHandler(.failure(.badURL))
+//            return
+//        }
+//        NetworkHelper.manager.performDataTask(withUrl: url, andHTTPBody: encodedData, andMethod: .post) { (result) in
+//            switch result {
+//            case .success(let data):
+//                completionHandler(.success(data))
+//            case .failure(let error):
+//                print(error)
+//
+//            }
+//        }
+//    }
     
     
 }
