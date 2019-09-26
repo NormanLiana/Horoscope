@@ -9,18 +9,13 @@
 import Foundation
 
 struct Horoscope: Codable {
-    let sunsign: String
-    let credit: String
-    let date: String
-    let horoscope: String
-    let meta: MetaWrapper
+    let sunsign: String?
+    let credit: String?
+    let date: String?
+    let horoscope: String?
 }
 
-struct MetaWrapper: Codable {
-    let mood: String
-    let keywords: String
-    let intensity: String
-}
+
 
 
 //{

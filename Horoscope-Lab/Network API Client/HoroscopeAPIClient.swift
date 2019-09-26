@@ -13,8 +13,8 @@ class HoroscopeAPIManager {
     
     static let shared = HoroscopeAPIManager()
     
-    func getElements(completionHandler: @escaping (Result<Horoscope, AppError>) -> () ) {
-        let urlStr = "http://sandipbgt.com/theastrologer/api/horoscope/gemini/today"
+    func getHoroscope(astroSign: String, completionHandler: @escaping (Result<Horoscope, AppError>) -> () ) {
+        let urlStr = "http://sandipbgt.com/theastrologer/api/horoscope/\(astroSign)/today"
         
         guard let url = URL(string: urlStr) else {
             completionHandler(.failure(.badURL))
@@ -26,9 +26,9 @@ class HoroscopeAPIManager {
                 completionHandler(.failure(error))
             case .success(let data):
                 do {
-                    let elementInfo = try JSONDecoder().decode(Horoscope.self, from: data)
+                    let horoscopeInfo = try JSONDecoder().decode(Horoscope.self, from: data)
                     
-                    completionHandler(.success(elementInfo))
+                    completionHandler(.success(horoscopeInfo))
                 } catch {
                     completionHandler(.failure(.couldNotParseJSON(rawError: error)))
                 }
